@@ -1,32 +1,45 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
-  </div>
+  <v-app>
+    <Navbar />
+    <v-main>
+      <v-container fluid fill-height justify-center>
+        <router-view />
+      </v-container>
+    </v-main>
+    <Footer />
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script>
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+export default {
+  name: "App",
+  components: { Navbar, Footer },
+
+  data: () => ({
+    //
+  }),
+};
+</script>
+<style lang="css">
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
 }
 
-#nav {
-  padding: 30px;
+/* Track */
+::-webkit-scrollbar-track {
+  background: #121212;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #333;
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 </style>
