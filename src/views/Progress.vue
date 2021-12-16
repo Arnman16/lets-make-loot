@@ -5,13 +5,20 @@
         <p class="text-center text-h4">Progress</p></v-row
       >
       <v-row class="justify-center"
-        ><GChart type="ColumnChart" :data="chartData" :options="chartOptions"
+        ><GChart
+          type="ColumnChart"
+          :data="chartData"
+          :options="makeOptions('Loot Earned', 'Sales, Expenses, and Profit')"
       /></v-row>
       <v-row class="justify-center">
         <p class="text-center ma-5">Goal</p></v-row
       >
       <v-row class="justify-center">
-        <GChart type="LineChart" :options="options" :data="collectionData" />
+        <GChart
+          type="LineChart"
+          :options="makeOptions('Profit Gained', 'In Canadian Dollars (CAD)')"
+          :data="collectionData"
+        />
       </v-row>
     </v-col>
   </v-container>
@@ -28,13 +35,13 @@ export default {
     chartWidth() {
       switch (this.$vuetify.breakpoint.name) {
         case "xs":
-          return 300;
+          return "90%";
         case "sm":
-          return 350;
+          return "90%";
         case "md":
-          return 400;
+          return 600;
         case "lg":
-          return 500;
+          return 700;
         case "xl":
           return 600;
         default:
@@ -52,13 +59,6 @@ export default {
         ["Episode 3", 660, 1120, 300],
         ["Episode 4", 1030, 540, 350],
       ],
-      chartOptions: {
-        chart: {
-          title: "Loot Earned",
-          subtitle: "Sales, Expenses, and Profit",
-          backgroundColor: "#E4E4E4",
-        },
-      },
       collectionData: [
         ["Day", "Sanity", "Profit"],
         ["Day 1", 90.5, 0],
@@ -69,15 +69,30 @@ export default {
         ["Day 6", 14.5, 6.7],
         ["Day 7", 11.2, 19.6],
       ],
-      options: {
-        chart: {
-          title: "Profit Gained",
-          subtitle: "In Canadian Dollars (CAD)",
-        },
-        width: 600,
-        height: 400,
-      },
     };
+  },
+  methods: {
+    makeOptions(title, subtitle) {
+      return {
+        chart: {
+          title: title,
+          subtitle: subtitle,
+        },
+        backgroundColor: {
+          fill: "#222",
+          fillOpacity: 0.3,
+        },
+        legendTextStyle: { color: "#FFF" },
+        titleTextStyle: { color: "#FFF" },
+        hAxis: {
+          textStyle: { color: "#FFF" },
+        },
+        vAxis: {
+          textStyle: { color: "#FFF" },
+        },
+        width: this.chartWidth,
+      };
+    },
   },
 };
 </script>

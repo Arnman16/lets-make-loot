@@ -3,7 +3,9 @@
     <Navbar />
     <v-main>
       <v-container fluid fill-height justify-center>
-        <router-view />
+        <v-slide-x-transition mode="out-in">
+          <router-view />
+        </v-slide-x-transition>
       </v-container>
     </v-main>
     <Footer />
